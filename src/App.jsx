@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { useEffect, useState, createContext } from 'react';
+import { Route, Routes, Link, BrowserRouter, Navigate } from 'react-router-dom';
+import Header from './components/Header';
+import Dashboard from './components/Home';
 
-function App() {
-  const [count, setCount] = useState(0)
+export const UsersContext = createContext();
+
+export default function App() {
+  const [posts, setPosts] = useState([])
+  const baseUrl = 'https://boolean-uk-api-server.fly.dev/Julia-Lindgren/post';
+
+  const fetchPosts = async () => {
+    fetch(baseUrl)
+      .then((response) => response.json())
+      .then((posts) => {
+        setPosts(posts);
+        console.log(posts)
+      })
+      .catch((error) => {
+        console.error('Error fetching posts:', error);
+      });
+  }
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <UsersContext.Provider value={{ posts, setPosts }}>
+      <>
+        <Header />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+        </BrowserRouter>
+      </>
+    </UsersContext.Provider>
+  );
 }
-
-export default App
