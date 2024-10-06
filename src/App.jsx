@@ -3,6 +3,7 @@ import { useEffect, useState, createContext } from 'react';
 import { Route, Routes, Link, BrowserRouter, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Dashboard from './components/Home';
+import PostPage from './components/PostPage';
 
 export const PostContext = createContext();
 export const UserContext = createContext();
@@ -49,6 +50,7 @@ export default function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/post/:postId" element={<PostPage/>} />
             </Routes>
           </BrowserRouter>
         </>

@@ -34,7 +34,7 @@ function PostListItem({ post }) {
                     <Avatar firstName={contact.firstName} lastName={contact.lastName} favouriteColour={contact.favouriteColour} />
                     <div className="contact-text">
                         <span className="contact-name">{contact.firstName} {contact.lastName}</span>
-                        <span className="post-title">{post.title}</span>
+                        <Link to={`/post/${post.id}`}><span className="post-title">{post.title}</span></Link>
                     </div>
                 </div>
             )}
