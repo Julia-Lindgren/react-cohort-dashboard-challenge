@@ -9,7 +9,7 @@ export const UserContext = createContext();
 
 export default function App() {
   const [posts, setPosts] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
 
   const baseUrl = 'https://boolean-uk-api-server.fly.dev/Julia-Lindgren/post';
   const UserUrl = 'https://boolean-uk-api-server.fly.dev/Julia-Lindgren/contact/1';

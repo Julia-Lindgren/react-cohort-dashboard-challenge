@@ -9,7 +9,7 @@ function PostList() {
     return (
         <div className='postList'> 
             <ul className="posts">
-                {posts.map((post) => (
+                {posts.slice().reverse().map((post) => (
                     <PostListItem key={post.id} post={post} />
                 ))}
             </ul>
