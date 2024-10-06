@@ -1,11 +1,12 @@
 import { useContext } from 'react'
-import { UsersContext } from '../App'
+import { PostContext } from '../App'
+import PostList from './PostList';
 function Dashboard() {
-    const { users } = useContext(UsersContext);
+    const { posts } = useContext(PostContext);
     return (
         <main >
             <section className="dashboard-layout">
-                <p>hi</p>
+                <PostList />
             </section>
         </main>
     )
