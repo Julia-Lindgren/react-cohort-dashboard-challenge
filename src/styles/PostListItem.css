@@ -41,4 +41,12 @@ li {
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 20px;
 }

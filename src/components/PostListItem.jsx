@@ -1,15 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react'
 import { useEffect, useState, createContext } from 'react';
 import Avatar from './Avatar';
 import "../styles/PostListItem.css";
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
+import { PostContext } from '../App';
 
 function PostListItem({ post }) {
-
+    const { posts, setPosts } = useContext(PostContext);
     const [contact, setContact] = useState(null);
+    const navigate = useNavigate();
     const contactUrl = `https://boolean-uk-api-server.fly.dev/Julia-Lindgren/contact/${post.contactId}`;
+    const postUrl = `https://boolean-uk-api-server.fly.dev/Julia-Lindgren/post/${post.id}`;
 
     const fetchContact = async () => {
         fetch(contactUrl)
@@ -21,6 +24,23 @@ function PostListItem({ post }) {
                 console.error('Error fetching contact:', error);
             });
     }
+
+    const deletePost = async () => {
+        fetch(postUrl, {
+            method: 'DELETE',
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete post');
+                }
+            })
+            .then(() => {
+                setPosts((prevPosts) => prevPosts.filter((p) => p.id !== post.id));
+            })
+            .catch((error) => {
+                console.error('Error deleting post:', error);
+            });
+    };
 
     useEffect(() => {
         fetchContact();
@@ -38,10 +58,17 @@ function PostListItem({ post }) {
                     </div>
                 </div>
             )}
+            <div className="post-content">
+                {post.content}
+                <div className='post-actions'>
+                    <button onClick={deletePost}>Delete Post</button>
+                    <button onClick={() => navigate(`/edit-post/${post.id}`)} className="edit-button"> Edit Post </button>
+                </div>
 
-            <div className="post-content">{post.content}</div>
-            <CommentList postId={post.id}/>
-            <CommentForm postId={post.id}/>
+            </div>
+
+            <CommentList postId={post.id} />
+            <CommentForm postId={post.id} />
         </li>
     )
 

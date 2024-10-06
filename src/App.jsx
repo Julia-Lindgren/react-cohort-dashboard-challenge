@@ -4,6 +4,7 @@ import { Route, Routes, Link, BrowserRouter, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Dashboard from './components/Home';
 import PostPage from './components/PostPage';
+import PostForm from './components/PostForm';
 
 export const PostContext = createContext();
 export const UserContext = createContext();
@@ -51,6 +52,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/post/:postId" element={<PostPage/>} />
+              <Route path="/edit-post/:postId" element={<PostForm/>} />
             </Routes>
           </BrowserRouter>
         </>
