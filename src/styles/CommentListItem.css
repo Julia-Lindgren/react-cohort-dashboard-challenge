@@ -15,6 +15,20 @@
     padding-right: 50px;
     border-radius: 10px;
     background-color:#e6ebf5;
-   
 }
 
+.comment-actions,.edit-actions {
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+
+}
+
+#edit-comment-input {
+    height: 30px;
+    border-radius: 5px;
+    border: 0;
+    background-color:#ffffff;
+    color: #201f1f;
+    font-family: Arial, Helvetica, sans-serif;
+}

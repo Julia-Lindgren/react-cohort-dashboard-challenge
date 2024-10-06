@@ -38,7 +38,7 @@ function CommentList({ postId }) {
             )}
             <ul className="comments">
                 {comments.slice(0, isExpanded ? comments.length : 3).map((comment) => (
-                    <CommentListItem key={comment.id} comment={comment} />
+                    <CommentListItem key={comment.id} comment={comment} setComments={setComments} />
                 ))}
             </ul>
             

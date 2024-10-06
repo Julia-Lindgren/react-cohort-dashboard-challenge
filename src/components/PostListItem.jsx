@@ -5,10 +5,11 @@ import Avatar from './Avatar';
 import "../styles/PostListItem.css";
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
-import { PostContext } from '../App';
+import { PostContext, UserContext } from '../App';
 
 function PostListItem({ post }) {
     const { posts, setPosts } = useContext(PostContext);
+    const { user } = useContext(UserContext);
     const [contact, setContact] = useState(null);
     const navigate = useNavigate();
     const contactUrl = `https://boolean-uk-api-server.fly.dev/Julia-Lindgren/contact/${post.contactId}`;
@@ -46,6 +47,8 @@ function PostListItem({ post }) {
         fetchContact();
     }, [post.contactId]);
 
+    const isPostOwner = user && user.id === post.contactId;
+
     return (
         <li className='postListItem'>
             {contact && (
@@ -60,11 +63,12 @@ function PostListItem({ post }) {
             )}
             <div className="post-content">
                 {post.content}
-                <div className='post-actions'>
-                    <button onClick={deletePost}>Delete Post</button>
-                    <button onClick={() => navigate(`/edit-post/${post.id}`)} className="edit-button"> Edit Post </button>
-                </div>
-
+                {isPostOwner && (
+                    <div className='post-actions'>
+                        <button onClick={deletePost}>Delete Post</button>
+                        <button onClick={() => navigate(`/edit-post/${post.id}`)} className="edit-button"> Edit Post </button>
+                    </div>
+                )}
             </div>
 
             <CommentList postId={post.id} />
