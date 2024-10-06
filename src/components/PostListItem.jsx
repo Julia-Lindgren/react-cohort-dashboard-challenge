@@ -3,6 +3,8 @@ import { useContext } from 'react'
 import { useEffect, useState, createContext } from 'react';
 import Avatar from './Avatar';
 import "../styles/PostListItem.css";
+import CommentList from './CommentList';
+import CommentForm from './CommentForm';
 
 function PostListItem({ post }) {
 
@@ -38,6 +40,8 @@ function PostListItem({ post }) {
             )}
 
             <div className="post-content">{post.content}</div>
+            <CommentList postId={post.id}/>
+            <CommentForm postId={post.id}/>
         </li>
     )
 

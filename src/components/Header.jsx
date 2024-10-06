@@ -2,9 +2,12 @@
 import { useContext } from "react";
 import Logo from "../assets/title-header.svg"
 import "../styles/Header.css";
+import Avatar from "./Avatar";
+import { UserContext } from "../App";
 
 export default function Header() {
 
+  const { user } = useContext(UserContext);
 
   return (
     <header>
@@ -12,9 +15,10 @@ export default function Header() {
         <img className="cohort-svg" src={Logo} alt="cohort-logo" />
       </div>
       <div className="userAvatar">
-        {/* Todo: add user avatar */}
+        {user && user.firstName && user.lastName && (
+          <Avatar firstName={user.firstName} lastName={user.lastName} favouriteColour={user.favouriteColour} />
+        )}
       </div>
-
     </header>
   );
 }
