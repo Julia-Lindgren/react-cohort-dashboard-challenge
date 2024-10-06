@@ -11,3 +11,7 @@
     padding-left: 0;
     margin-left: 0;
 }
+
+.toggle-comments {
+    cursor: pointer;
+}
