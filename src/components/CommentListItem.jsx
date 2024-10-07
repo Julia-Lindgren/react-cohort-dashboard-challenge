@@ -92,6 +92,7 @@ function CommentListItem({ comment, setComments }) {
         <li className='commentListItem'>
             {commenter && commenter.firstName && commenter.lastName && (
                 <Avatar
+                    userId={commenter.id}
                     firstName={commenter.firstName}
                     lastName={commenter.lastName}
                     favouriteColour={commenter.favouriteColour}
@@ -99,7 +100,7 @@ function CommentListItem({ comment, setComments }) {
             )}
             <div className="commentBox">
                 {commenter && commenter.firstName && commenter.lastName && (
-                    <div className="name">{commenter.firstName} {commenter.lastName}</div>
+                    <Link to={`/profile/${commenter.id}`}><div className="name">{commenter.firstName} {commenter.lastName}</div></Link>
                 )}
                 {isEditing ? (
                     <>
@@ -121,7 +122,7 @@ function CommentListItem({ comment, setComments }) {
                         {user && user.id === comment.contactId && (
                             <div className="comment-actions">
                                 <button onClick={toggleEdit} className="edit-button">Edit</button>
-                                <button onClick={deleteComment} className="delete-button">Delete Comment</button>
+                                <button onClick={deleteComment} className="delete-button">Delete</button>
                             </div>
                         )}
                     </>

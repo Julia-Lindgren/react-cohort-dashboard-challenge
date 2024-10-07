@@ -116,7 +116,7 @@ function PostForm() {
         <form onSubmit={handleSubmit}>
             <div className="form-content">
                 {user && user.firstName && user.lastName && (
-                    <Avatar firstName={user.firstName} lastName={user.lastName} favouriteColour={user.favouriteColour} />
+                    <Avatar userId={user.id} firstName={user.firstName} lastName={user.lastName} favouriteColour={user.favouriteColour} />
                 )}
                 <div>
                     <input

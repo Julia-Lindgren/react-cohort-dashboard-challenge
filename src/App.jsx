@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Dashboard from './components/Home';
 import PostPage from './components/PostPage';
 import PostForm from './components/PostForm';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
 
 export const PostContext = createContext();
 export const UserContext = createContext();
@@ -47,14 +49,22 @@ export default function App() {
     <PostContext.Provider value={{ posts, setPosts }}>
       <UserContext.Provider value={{ user, setUser }}>
         <>
-          <Header />
+
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/post/:postId" element={<PostPage/>} />
-              <Route path="/edit-post/:postId" element={<PostForm/>} />
-            </Routes>
+            <div className="app-layout">
+              <Header />
+              <div className="main-content">
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/post/:postId" element={<PostPage />} />
+                  <Route path="/edit-post/:postId" element={<PostForm />} />
+                  <Route path="/profile/:userId" element={<Profile />} />
+                </Routes>
+              </div>
+            </div>
           </BrowserRouter>
+
         </>
       </UserContext.Provider>
     </PostContext.Provider >

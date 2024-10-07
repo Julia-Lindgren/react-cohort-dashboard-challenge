@@ -54,6 +54,7 @@ function CommentForm({ postId }) {
             <div className="form-content">
                 {user && user.firstName && user.lastName && (
                     <Avatar
+                        userId={user.id}
                         firstName={user.firstName}
                         lastName={user.lastName}
                         favouriteColour={user.favouriteColour}

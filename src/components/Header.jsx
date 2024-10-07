@@ -16,7 +16,7 @@ export default function Header() {
       </div>
       <div className="userAvatar">
         {user && user.firstName && user.lastName && (
-          <Avatar firstName={user.firstName} lastName={user.lastName} favouriteColour={user.favouriteColour} />
+          <Avatar userId={user.id} firstName={user.firstName} lastName={user.lastName} favouriteColour={user.favouriteColour} />
         )}
       </div>
     </header>

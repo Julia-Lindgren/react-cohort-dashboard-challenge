@@ -54,9 +54,9 @@ function PostListItem({ post }) {
             {contact && (
                 <div className="contact-info">
 
-                    <Avatar firstName={contact.firstName} lastName={contact.lastName} favouriteColour={contact.favouriteColour} />
+                    <Avatar userId={contact.id} firstName={contact.firstName} lastName={contact.lastName} favouriteColour={contact.favouriteColour} />
                     <div className="contact-text">
-                        <span className="contact-name">{contact.firstName} {contact.lastName}</span>
+                    <Link to={`/profile/${contact.id}`}><span className="contact-name">{contact.firstName} {contact.lastName}</span> </Link>
                         <Link to={`/post/${post.id}`}><span className="post-title">{post.title}</span></Link>
                     </div>
                 </div>
